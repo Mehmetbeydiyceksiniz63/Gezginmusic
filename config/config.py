@@ -98,7 +98,7 @@ AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "True")
 
 AUTO_LEAVE_ASSISTANT_TIME = int(
 
-    getenv("ASSISTANT_LEAVE_TIME", "5400")
+    getenv("ASSISTANT_LEAVE_TIME", "3400")
 
 )  # Remember to give value in Seconds
 
@@ -106,7 +106,7 @@ AUTO_LEAVE_ASSISTANT_TIME = int(
 
 AUTO_SUGGESTION_TIME = int(
 
-    getenv("AUTO_SUGGESTION_TIME", "5400")
+    getenv("AUTO_SUGGESTION_TIME", "10000")
 
 )  # Remember to give value in Seconds
 
@@ -116,7 +116,7 @@ AUTO_DOWNLOADS_CLEAR = getenv("AUTO_DOWNLOADS_CLEAR", None)
 
 # Set it True if you want to bot to suggest about bot commands to random chats of your bots.
 
-AUTO_SUGGESTION_MODE = getenv("AUTO_SUGGESTION_MODE", None)
+AUTO_SUGGESTION_MODE = getenv("AUTO_SUGGESTION_MODE", True)
 
 # Set it true if you want your bot to be private only [You'll need to allow CHAT_ID via /authorise command then only your bot will play music in that chat.]
 
