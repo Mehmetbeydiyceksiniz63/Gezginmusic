@@ -16,48 +16,32 @@ from ArchMusic.utils.database import (get_global_tops,
 
 
 async def play_logs(message, streamtype):
-    chat_id = message.chat.id
-    sayı = await app.get_chat_members_count(chat_id)
-    toplamgrup = len(await get_served_chats())
-    aktifseslisayısı = len(await get_active_chats())
-    aktifvideosayısı = len(await get_active_video_chats())
-    cpu = psutil.cpu_percent(interval=0.5)
-    mem = psutil.virtual_memory().percent
-    disk = psutil.disk_usage("/").percent
-    CPU = f"{cpu}%"
-    RAM = f"{mem}%"
-    DISK = f"{disk}%"
-
-
     if await is_on_off(LOG):
         if message.chat.username:
             chatusername = f"@{message.chat.username}"
         else:
-            chatusername = "Gizli Grup 🔏"
+            chatusername = "ᴘʀɪᴠᴀᴛᴇ ɢʀᴏᴜᴘ"
+
         logger_text = f"""
+**{app.mention} 𝘼𝙆𝙄𝙎 𝘽𝘼𝙎𝙇𝘼𝘿𝙄**
 
+**𝙜𝙧𝙪𝙥 𝙞𝙙 :** `{message.chat.id}`
+**𝙜𝙧𝙪𝙥 𝙖𝙙𝙞 :** {message.chat.title}
+**𝙜𝙧𝙪𝙥 𝙠𝙪𝙡𝙡𝙖𝙣𝙞𝙘𝙞 𝙖𝙙𝙞 :** {chatusername}
 
-📌 **Grup :** {message.chat.title} [`{message.chat.id}`]
-👥 **Üye Sayısı : {sayı}**
-👤 **Kullanıcı :** {message.from_user.mention}
-✏️ **Kullanıcı Adı :** @{message.from_user.username}
-🔢 **Kullanıcı ID :** `{message.from_user.id}`
-🔗 **Grup Linki :** {chatusername}
-🔎 **Sorgu :** {message.text}
+**𝙠𝙪𝙡𝙡𝙖𝙣𝙞𝙘𝙞 𝙞𝙙 :** `{message.from_user.id}`
+**𝙠𝙪𝙡𝙡𝙖𝙣𝙞𝙘𝙞 𝙞𝙨𝙢𝙞 :** {message.from_user.mention}
+**𝙠𝙪𝙡𝙡𝙖𝙣𝙞𝙘𝙞 𝙖𝙙𝙞 :** @{message.from_user.username}
 
-**CPU :** {CPU}  ♨️  **RAM :** {RAM}  📂  **DISK :** {DISK}
-
-**Toplam Grup Sayısı : 👉{toplamgrup}**
-
-**Aktif Ses : {aktifseslisayısı}  🌬️  Aktif Video : {aktifvideosayısı}**"""
+**𝙠𝙪𝙮𝙧𝙪𝙠 :** {message.text.split(None, 1)[1]}
+**𝙨𝙖𝙧𝙠𝙞 𝙖𝙙𝙞 :** {streamtype}"""
         if message.chat.id != LOG_GROUP_ID:
             try:
                 await app.send_message(
-                    LOG_GROUP_ID,
-                    f"{logger_text}",
+                    chat_id=LOG_GROUP_ID,
+                    text=logger_text,
                     disable_web_page_preview=True,
                 )
-                await app.set_chat_title(LOG_GROUP_ID, f"AKTİF SES - {aktifseslisayısı}")
-            except:
-                pass
+            except Exception as e:
+                print(e)
         return
