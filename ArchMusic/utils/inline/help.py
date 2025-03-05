@@ -30,11 +30,11 @@ def help_pannel(_, START: Union[bool, int] = None):
             text=_["CLOSEMENU_BUTTON"], callback_data=f"close"
         ),
     ]
-        mark = second if START else first
+    mark = second if START else first
     upl = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton(
+                                InlineKeyboardButton(
                     text=_["H_B_1"],
                     callback_data="help_callback hb1",
                 ),
